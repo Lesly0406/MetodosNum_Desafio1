@@ -1,0 +1,1220 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Desafío Integrador - Cálculo I</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f6f1fa;
+            color: #30263d;
+            line-height: 1.6;
+        }
+
+        /* ENCABEZADO */
+
+        header {
+            background: linear-gradient(135deg, #6a3fa0, #9b59b6);
+            color: white;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+        }
+
+        /* MENÚ */
+
+        nav {
+            background: white;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 12px rgba(80, 40, 100, 0.12);
+        }
+
+        nav a {
+            color: #6a3fa0;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            color: #d354c4;
+        }
+
+        /* CONTENEDOR */
+
+        main {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 7px 25px rgba(80, 40, 100, 0.10);
+        }
+
+        h2 {
+            color: #6a3fa0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eadcf2;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #8e44ad;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        /* DATOS */
+
+        .datos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input {
+            padding: 12px;
+            border: 2px solid #dfcfea;
+            border-radius: 9px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #9b59b6;
+        }
+
+        /* BOTÓN */
+
+        button {
+            background: linear-gradient(135deg, #8e44ad, #b45cc8);
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+        }
+
+        /* RESULTADOS */
+
+        .resultado {
+            display: none;
+            margin-top: 25px;
+            background: #faf5fd;
+            border-left: 5px solid #9b59b6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .resultado h3 {
+            margin-top: 0;
+        }
+
+        .formula {
+            background: #f3eafa;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-family: "Times New Roman", serif;
+            font-size: 19px;
+        }
+
+        .resultado-final {
+            background: #e9d8f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .explicacion {
+            background: #fff8fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        /* TABLA */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border: 1px solid #dfcfea;
+            text-align: center;
+        }
+
+        th {
+            background: #8e44ad;
+            color: white;
+        }
+
+        /* INTRODUCCIÓN */
+
+        .inicio {
+            background: linear-gradient(135deg, #ffffff, #f8effc);
+        }
+
+        .inicio p {
+            margin-bottom: 12px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #382047;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 700px) {
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav a {
+                display: block;
+                margin: 8px;
+            }
+
+            .datos {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Desafío Integrador</h1>
+
+        <p>
+            Cálculo I · Errores · Taylor · Propagación
+        </p>
+
+    </header>
+
+
+    <nav>
+
+        <a href="#ejercicio1">Ejercicio 1</a>
+        <a href="#ejercicio2">Ejercicio 2</a>
+        <a href="#ejercicio3">Ejercicio 3</a>
+
+    </nav>
+
+
+    <main>
+
+        <!-- INTRODUCCIÓN -->
+
+        <section class="card inicio">
+
+            <h2>Mi desafío de Cálculo I</h2>
+
+            <p>
+                En esta página resolví los tres ejercicios del desafío integrador
+                de Cálculo I de una manera un poco más práctica.
+            </p>
+
+            <p>
+                La idea es que se puedan ingresar los datos de cada ejercicio
+                y obtener automáticamente los resultados. De esta forma,
+                además de comprobar los cálculos, se puede observar cómo
+                cambian los errores cuando cambian los valores.
+            </p>
+
+            <p>
+                Los temas que se trabajan son el error absoluto, error relativo
+                porcentual, series de Taylor y propagación del error.
+            </p>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- EJERCICIO 1 -->
+        <!-- ================================================= -->
+
+        <section class="card" id="ejercicio1">
+
+            <h2>Ejercicio 1 — Errores y propagación</h2>
+
+            <p>
+                En este ejercicio se analiza la medición del lado de una placa
+                cuadrada. Primero calcularemos qué tan diferente es la medición
+                respecto al valor de referencia y después veremos cómo ese error
+                afecta al cálculo del área.
+            </p>
+
+
+            <h3>Ingresa los datos</h3>
+
+            <div class="datos">
+
+                <div class="campo">
+
+                    <label>Valor medido (xa) en cm:</label>
+
+                    <input type="number" id="xMedido" value="12.4" step="any">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Valor de referencia (xv) en cm:</label>
+
+                    <input type="number" id="xReferencia" value="12.5" step="any">
+
+                </div>
+
+            </div>
+
+
+            <button onclick="resolverEjercicio1()">
+                Resolver ejercicio 1
+            </button>
+
+
+            <div class="resultado" id="resultado1">
+
+                <h3>Resultado</h3>
+
+                <div id="pasos1"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- EJERCICIO 2 -->
+        <!-- ================================================= -->
+
+        <section class="card" id="ejercicio2">
+
+            <h2>Ejercicio 2 — Serie de Taylor</h2>
+
+            <p>
+                Aquí trabajaremos con la función exponencial. Vamos a obtener
+                los polinomios de Taylor de grado 1 y 2 alrededor de cero y
+                después veremos cuál de los dos se acerca más al valor real.
+            </p>
+
+
+            <h3>Ingresa el valor de x</h3>
+
+            <div class="datos">
+
+                <div class="campo">
+
+                    <label>Valor de x:</label>
+
+                    <input type="number" id="valorX" value="0.3" step="any">
+
+                </div>
+
+            </div>
+
+
+            <button onclick="resolverEjercicio2()">
+                Resolver ejercicio 2
+            </button>
+
+
+            <div class="resultado" id="resultado2">
+
+                <h3>Resultado</h3>
+
+                <div id="pasos2"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- EJERCICIO 3 -->
+        <!-- ================================================= -->
+
+        <section class="card" id="ejercicio3">
+
+            <h2>Ejercicio 3 — Péndulo y propagación del error</h2>
+
+            <p>
+                En este último ejercicio utilizaremos la fórmula de un péndulo
+                simple para calcular experimentalmente la aceleración de la
+                gravedad. Después compararemos el resultado con 9.8 m/s² y
+                estimaremos cuánto error pueden producir las mediciones de
+                longitud y período.
+            </p>
+
+
+            <h3>Ingresa los datos</h3>
+
+            <div class="datos">
+
+                <div class="campo">
+
+                    <label>Longitud L (m):</label>
+
+                    <input type="number" id="longitud" value="1.000" step="any">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Error de L (m):</label>
+
+                    <input type="number" id="errorL" value="0.002" step="any">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Período T (s):</label>
+
+                    <input type="number" id="periodo" value="2.006" step="any">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Error de T (s):</label>
+
+                    <input type="number" id="errorT" value="0.004" step="any">
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label>Valor real de g (m/s²):</label>
+
+                    <input type="number" id="gReal" value="9.8" step="any">
+
+                </div>
+
+            </div>
+
+
+            <button onclick="resolverEjercicio3()">
+                Resolver ejercicio 3
+            </button>
+
+
+            <div class="resultado" id="resultado3">
+
+                <h3>Resultado</h3>
+
+                <div id="pasos3"></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>Desafío Integrador — Cálculo I</p>
+
+        <p>
+            Una forma práctica de entender los errores y las aproximaciones.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // =====================================================
+        // EJERCICIO 1
+        // =====================================================
+
+        function resolverEjercicio1() {
+
+            let xa = parseFloat(document.getElementById("xMedido").value);
+
+            let xv = parseFloat(document.getElementById("xReferencia").value);
+
+
+            if (isNaN(xa) || isNaN(xv)) {
+
+                alert("Por favor, ingresa todos los datos.");
+
+                return;
+
+            }
+
+
+            // Error absoluto
+
+            let errorAbsoluto = Math.abs(xv - xa);
+
+
+            // Error relativo porcentual
+
+            let errorRelativo =
+                (errorAbsoluto / Math.abs(xv)) * 100;
+
+
+            // Área
+
+            let area = xv * xv;
+
+
+            // Propagación del error
+
+            let errorArea =
+                Math.abs(2 * xv) * errorAbsoluto;
+
+
+            // Error relativo del área
+
+            let errorRelativoArea =
+                (errorArea / Math.abs(area)) * 100;
+
+
+            document.getElementById("resultado1").style.display = "block";
+
+
+            document.getElementById("pasos1").innerHTML = `
+
+            <p>
+                <strong>1. Error absoluto</strong>
+            </p>
+
+            <div class="formula">
+                Ea = |xv - xa|
+            </div>
+
+            <div class="formula">
+                Ea = |${xv} - ${xa}|
+                = <strong>${errorAbsoluto.toFixed(4)} cm</strong>
+            </div>
+
+
+            <p>
+                <strong>2. Error relativo porcentual</strong>
+            </p>
+
+            <div class="formula">
+                Er(%) =
+                Ea / |xv| × 100
+            </div>
+
+            <div class="formula">
+                Er(%) =
+                ${errorAbsoluto.toFixed(4)} /
+                ${Math.abs(xv)}
+                × 100
+                =
+                <strong>${errorRelativo.toFixed(4)}%</strong>
+            </div>
+
+
+            <p>
+                <strong>3. Área de la placa</strong>
+            </p>
+
+            <div class="formula">
+                A = x² = (${xv})²
+                =
+                <strong>${area.toFixed(4)} cm²</strong>
+            </div>
+
+
+            <p>
+                <strong>4. Error propagado al área</strong>
+            </p>
+
+            <div class="formula">
+                ΔA ≈ |2x|Δx
+            </div>
+
+            <div class="formula">
+                ΔA ≈
+                |2(${xv})|(${errorAbsoluto.toFixed(4)})
+                =
+                <strong>${errorArea.toFixed(4)} cm²</strong>
+            </div>
+
+
+            <p>
+                <strong>5. Error relativo del área</strong>
+            </p>
+
+            <div class="formula">
+                Er(A) =
+                ΔA / A × 100
+                =
+                <strong>${errorRelativoArea.toFixed(4)}%</strong>
+            </div>
+
+
+            <div class="resultado-final">
+
+                Resultado final:
+
+                <br><br>
+
+                Error absoluto:
+                ${errorAbsoluto.toFixed(4)} cm
+
+                <br>
+
+                Error relativo:
+                ${errorRelativo.toFixed(4)}%
+
+                <br>
+
+                Error propagado del área:
+                ${errorArea.toFixed(4)} cm²
+
+                <br>
+
+                Error relativo del área:
+                ${errorRelativoArea.toFixed(4)}%
+
+            </div>
+
+
+            <div class="explicacion">
+
+                <strong>Mi interpretación:</strong>
+
+                El error de la medición del lado es de
+                ${errorAbsoluto.toFixed(4)} cm.
+
+                Al utilizar ese dato para calcular el área,
+                el error también se propaga y llega a
+                ${errorArea.toFixed(4)} cm².
+
+                Esto muestra que un pequeño error en una medición
+                puede afectar el resultado final.
+
+            </div>
+        `;
+        }
+
+
+
+        // =====================================================
+        // EJERCICIO 2
+        // =====================================================
+
+        function resolverEjercicio2() {
+
+            let x = parseFloat(document.getElementById("valorX").value);
+
+
+            if (isNaN(x)) {
+
+                alert("Por favor, ingresa un valor para x.");
+
+                return;
+
+            }
+
+
+            // Taylor grado 1
+
+            let p1 = 1 + x;
+
+
+            // Taylor grado 2
+
+            let p2 = 1 + x + (x * x) / 2;
+
+
+            // Valor real
+
+            let real = Math.exp(x);
+
+
+            // Errores
+
+            let error1 = Math.abs(real - p1);
+
+            let error2 = Math.abs(real - p2);
+
+
+            let relativo1 = (error1 / Math.abs(real)) * 100;
+
+            let relativo2 = (error2 / Math.abs(real)) * 100;
+
+
+            // Cota de Lagrange
+
+            let cota =
+                (Math.exp(x) * Math.pow(x, 3)) / 6;
+
+
+            document.getElementById("resultado2").style.display = "block";
+
+
+            document.getElementById("pasos2").innerHTML = `
+
+            <p>
+                <strong>1. Polinomio de Taylor de grado 1</strong>
+            </p>
+
+            <div class="formula">
+                P₁(x) = 1 + x
+            </div>
+
+
+            <p>
+                <strong>2. Polinomio de Taylor de grado 2</strong>
+            </p>
+
+            <div class="formula">
+                P₂(x) = 1 + x + x²/2
+            </div>
+
+
+            <p>
+                <strong>3. Aproximación con P₁</strong>
+            </p>
+
+            <div class="formula">
+                P₁(${x}) =
+                <strong>${p1.toFixed(8)}</strong>
+            </div>
+
+
+            <p>
+                <strong>4. Aproximación con P₂</strong>
+            </p>
+
+            <div class="formula">
+                P₂(${x}) =
+                <strong>${p2.toFixed(8)}</strong>
+            </div>
+
+
+            <p>
+                <strong>5. Valor real</strong>
+            </p>
+
+            <div class="formula">
+                e<sup>${x}</sup> =
+                <strong>${real.toFixed(8)}</strong>
+            </div>
+
+
+            <table>
+
+                <tr>
+
+                    <th>Método</th>
+
+                    <th>Aproximación</th>
+
+                    <th>Error absoluto</th>
+
+                    <th>Error %</th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>P₁</td>
+
+                    <td>${p1.toFixed(8)}</td>
+
+                    <td>${error1.toFixed(8)}</td>
+
+                    <td>${relativo1.toFixed(4)}%</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>P₂</td>
+
+                    <td>${p2.toFixed(8)}</td>
+
+                    <td>${error2.toFixed(8)}</td>
+
+                    <td>${relativo2.toFixed(4)}%</td>
+
+                </tr>
+
+            </table>
+
+
+            <p>
+                <strong>6. Cota de error de Lagrange</strong>
+            </p>
+
+            <div class="formula">
+
+                |R₂(x)| ≤
+                e<sup>${x}</sup> · ${x}³ / 3!
+
+                <br><br>
+
+                |R₂(${x})|
+                ≤
+                <strong>${cota.toFixed(8)}</strong>
+
+            </div>
+
+
+            <div class="resultado-final">
+
+                El polinomio de Taylor de grado 2
+                proporciona una aproximación más precisa:
+
+                <br><br>
+
+                P₁ → ${p1.toFixed(8)}
+
+                <br>
+
+                P₂ → ${p2.toFixed(8)}
+
+                <br>
+
+                Valor real → ${real.toFixed(8)}
+
+            </div>
+
+
+            <div class="explicacion">
+
+                <strong>Mi interpretación:</strong>
+
+                Al pasar de un polinomio de grado 1 a uno de grado 2,
+                agregamos un término que permite representar mejor
+                el comportamiento de la función.
+
+                Por eso, en este caso, P₂ se acerca más al valor real
+                y tiene un error menor.
+
+                Además, la cota de Lagrange nos permite saber un límite
+                máximo aproximado para el error de truncamiento.
+
+            </div>
+        `;
+        }
+
+
+
+        // =====================================================
+        // EJERCICIO 3
+        // =====================================================
+
+        function resolverEjercicio3() {
+
+            let L =
+                parseFloat(document.getElementById("longitud").value);
+
+            let dL =
+                parseFloat(document.getElementById("errorL").value);
+
+            let T =
+                parseFloat(document.getElementById("periodo").value);
+
+            let dT =
+                parseFloat(document.getElementById("errorT").value);
+
+            let gReal =
+                parseFloat(document.getElementById("gReal").value);
+
+
+            if (
+                isNaN(L) ||
+                isNaN(dL) ||
+                isNaN(T) ||
+                isNaN(dT) ||
+                isNaN(gReal)
+            ) {
+
+                alert("Por favor, completa todos los datos.");
+
+                return;
+
+            }
+
+
+            // Valor experimental
+
+            let g =
+                (4 * Math.PI * Math.PI * L) /
+                (T * T);
+
+
+            // Error absoluto
+
+            let errorAbsoluto =
+                Math.abs(gReal - g);
+
+
+            // Error relativo
+
+            let errorRelativo =
+                (errorAbsoluto / Math.abs(gReal)) * 100;
+
+
+            // Derivadas parciales
+
+            let dg_dL =
+                (4 * Math.PI * Math.PI) /
+                (T * T);
+
+
+            let dg_dT =
+                (-8 * Math.PI * Math.PI * L) /
+                Math.pow(T, 3);
+
+
+            // Propagación
+
+            let errorG =
+                Math.abs(dg_dL) * dL +
+                Math.abs(dg_dT) * dT;
+
+
+            // Taylor alrededor de T = 2
+
+            let T0 = 2;
+
+
+            let g0 =
+                (4 * Math.PI * Math.PI * L) /
+                (T0 * T0);
+
+
+            let derivadaT0 =
+                (-8 * Math.PI * Math.PI * L) /
+                Math.pow(T0, 3);
+
+
+            let taylor =
+                g0 +
+                derivadaT0 * (T - T0);
+
+
+            document.getElementById("resultado3").style.display = "block";
+
+
+            document.getElementById("pasos3").innerHTML = `
+
+            <p>
+                <strong>1. Valor experimental de g</strong>
+            </p>
+
+            <div class="formula">
+                g = 4π²L / T²
+            </div>
+
+            <div class="formula">
+
+                g =
+                4π²(${L}) /
+                (${T})²
+
+                <br><br>
+
+                g =
+                <strong>${g.toFixed(6)} m/s²</strong>
+
+            </div>
+
+
+            <p>
+                <strong>2. Error absoluto</strong>
+            </p>
+
+            <div class="formula">
+
+                Ea =
+                |${gReal} - ${g.toFixed(6)}|
+
+                =
+
+                <strong>${errorAbsoluto.toFixed(6)} m/s²</strong>
+
+            </div>
+
+
+            <p>
+                <strong>3. Error relativo porcentual</strong>
+            </p>
+
+            <div class="formula">
+
+                Er(%) =
+
+                ${errorAbsoluto.toFixed(6)}
+                /
+                ${gReal}
+                × 100
+
+                =
+
+                <strong>${errorRelativo.toFixed(4)}%</strong>
+
+            </div>
+
+
+            <p>
+                <strong>4. Derivadas parciales</strong>
+            </p>
+
+            <div class="formula">
+
+                ∂g/∂L =
+                4π²/T²
+
+                <br><br>
+
+                ∂g/∂L =
+                <strong>${dg_dL.toFixed(6)}</strong>
+
+            </div>
+
+
+            <div class="formula">
+
+                ∂g/∂T =
+                -8π²L/T³
+
+                <br><br>
+
+                ∂g/∂T =
+                <strong>${dg_dT.toFixed(6)}</strong>
+
+            </div>
+
+
+            <p>
+                <strong>5. Propagación del error</strong>
+            </p>
+
+            <div class="formula">
+
+                Δg ≈
+                |∂g/∂L|ΔL
+                +
+                |∂g/∂T|ΔT
+
+            </div>
+
+
+            <div class="formula">
+
+                Δg ≈
+
+                |${dg_dL.toFixed(6)}|(${dL})
+                +
+
+                |${dg_dT.toFixed(6)}|(${dT})
+
+                <br><br>
+
+                Δg ≈
+                <strong>${errorG.toFixed(6)} m/s²</strong>
+
+            </div>
+
+
+            <p>
+                <strong>6. Aproximación mediante Taylor</strong>
+            </p>
+
+            <div class="formula">
+
+                g(T) =
+                4π²L/T²
+
+                <br><br>
+
+                P₁(T) =
+                g(2) + g'(2)(T - 2)
+
+            </div>
+
+
+            <div class="formula">
+
+                P₁(${T}) =
+
+                ${g0.toFixed(6)}
+                +
+
+                (${derivadaT0.toFixed(6)})
+                (${T} - 2)
+
+                <br><br>
+
+                P₁(${T}) =
+                <strong>${taylor.toFixed(6)} m/s²</strong>
+
+            </div>
+
+
+            <table>
+
+                <tr>
+
+                    <th>Método</th>
+
+                    <th>Resultado</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>Fórmula directa</td>
+
+                    <td>${g.toFixed(6)} m/s²</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Taylor grado 1</td>
+
+                    <td>${taylor.toFixed(6)} m/s²</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Valor real</td>
+
+                    <td>${gReal.toFixed(6)} m/s²</td>
+
+                </tr>
+
+            </table>
+
+
+            <div class="resultado-final">
+
+                Error experimental:
+
+                ${errorAbsoluto.toFixed(6)} m/s²
+
+                <br>
+
+                Error propagado:
+
+                ${errorG.toFixed(6)} m/s²
+
+            </div>
+
+
+            <div class="explicacion">
+
+                <strong>Mi interpretación:</strong>
+
+                El valor obtenido experimentalmente para la gravedad
+                es ${g.toFixed(6)} m/s².
+
+                Al compararlo con el valor de referencia de
+                ${gReal} m/s² obtenemos un error de
+                ${errorAbsoluto.toFixed(6)} m/s².
+
+                El error propagado estimado es
+                ${errorG.toFixed(6)} m/s².
+
+                Como la incertidumbre propagada es mayor que la
+                diferencia observada, podemos considerar que la
+                discrepancia está dentro del margen esperado
+                por las incertidumbres de las mediciones.
+
+                <br><br>
+
+                Finalmente, la aproximación de Taylor de grado 1 da
+                ${taylor.toFixed(6)} m/s², un valor cercano al obtenido
+                directamente. Esto tiene sentido porque T = ${T}
+                está relativamente cerca del punto T = 2 utilizado
+                para construir la aproximación.
+
+            </div>
+
+        `;
+        }
+
+    </script>
+
+</body>
+
+</html>
